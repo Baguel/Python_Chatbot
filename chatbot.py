@@ -3,9 +3,24 @@ import pygame
 from io import BytesIO
 import google.generativeai as genai
 import os
+import locale
+from googletrans import Translator
 
+# Détecte le langage de la machine
+def detect_default_langage():
+    lang = locale.getdefaultlocale()[0].split('_')[0]
+    return lang
+
+# Traduis dans le langage de la machine
+def translate_to_other_langage(texte):
+    langage = detect_default_langage()
+    translator = Translator()
+    return translator.translate(texte, dest=langage).text
+
+# Lis le texte dans le langage de la machine
 def text_to_voice(texte):
-    tts = gTTS(text=texte, lang='fr', slow=False)
+    langage = detect_default_langage()
+    tts = gTTS(text=texte, lang=langage, slow=False)
     # Utilisation de BytesIO pour stocker l'audio en mémoire
     audio_bytes = BytesIO()
     tts.write_to_fp(audio_bytes)
@@ -35,38 +50,34 @@ def response_with_gemini(prompt):
         'temperature': 0,
         'max_output_tokens': 800
     })
-
     return completion.text
+
 
 def dictionnary(texte):
     dialogue = {
-        "bonjour": "bonjour Comment vous allez aujourd'hui?",
-        "ca va et toi" : "ca va bien merci de demander",
+        "bonjour": "Comment vous allez?",
+        "bien et toi" : "ca va bien merci de demander",
         "j'ai besoin de toi": "Demander moi ce que vous voulez ??",
-        "ou est le japon ??" : "État insulaire d'Asie orientale baigné au nord par la mer d'Okhotsk, à l'est et au sud par l'océan Pacifique, et à l'ouest par la mer du Japon, qui le sépare du continent asiatique, le Japon est formé de quatre îles principales (Hokkaido, Honshu, Shikoku et Kyushu)",
         "merci beaucoup": "Tout le plaisir a été pour moi",
-        "hakari" : "Kinji Hakari est un élève de terminale de l'école d'exorcisme de Tokyo qui est actuellement suspendus pour s'être embrouillé avec la hiérarchie, en particulier les conservateurs. Depuis, semble-t-il, Kinji dirige le Fight Club, un endroit où s'organisent des combats entre exorcistes.",
+        "taureau" : "je suis un superbot alimenter par Gemini créer par florentin GANFON",
+        "japon" : "Le Japon est un pays insulaire situé dans l'océan Pacifique. Il comporte des villes denses, des palais impériaux, des parcs nationaux montagneux ainsi que des milliers de temples et de sanctuaires."
     }
     for i, j in dialogue.items():
-        if texte == i:
-            return j
-        
-        else:
-            res = response_with_gemini(texte)
-            return res
+        s = Translator().translate(texte, dest="fr").text
+        if i == s.lower():
+            return translate_to_other_langage(j)
 
+    return response_with_gemini(texte)
 
 def main_loop():
     while True:
-        texte = input()
+        texte = input(translate_to_other_langage("Entrer votre texte:") + ' ')
         text = dictionnary(texte)
-        if text == "exit":
-            break
-        elif text == "Au Revoir":
+        if text == "Au Revoir":
             text_to_voice(text)
             break
         else:
-            print(text)
+            print('bot: ' + text)
             text_to_voice(text)
 
-main_loop()
+##main_loop()
