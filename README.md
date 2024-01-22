@@ -30,8 +30,8 @@ Please use google for Variable's name and add your true API_KEY. \
 Go to the root of this repository like this and run requirements.txt:
 ```bash
 
-  pip3 install requirements.txt
   cd Python_Chatbot
+  pip3 install requirements.txt
 
 ```
 Run the command like this:
