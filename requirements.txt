@@ -1,0 +1,8 @@
+speech_recognition
+locale
+googletrans
+gtts
+pygame
+io
+google.generativeai
+os
