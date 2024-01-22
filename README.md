@@ -27,9 +27,10 @@ To run this project, you will need to add the API KEY in your environment like t
 `export google='API_KEY'`
 
 Please use google for Variable's name and add your true API_KEY. \
-Go to the root of this repository:
+Go to the root of this repository like this and run requirements.txt:
 ```bash
 
+  pip3 install requirements.txt
   cd Python_Chatbot
 
 ```
@@ -40,11 +41,10 @@ Run the command like this:
 
 ## Start Program
 
-Always at root, after you ran the command, you will execute "pip3 install requirements.txt" and "main.py"
+Always at root, after you ran the command, you will execute "main.py"
 
 ```bash
 
-  pip3 install requirements.txt
   python3 main.py
 
 ```
