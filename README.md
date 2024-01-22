@@ -51,5 +51,5 @@ You will have this ouput,
 
 ![Capture d’écran du 2024-01-22 17-27-11](https://github.com/Baguel/Python_Chatbot/assets/114688432/20938a28-65d3-4312-9656-0bbc34f244e3)
 
-choose your option and start enjoy it :)
+choose your option and start enjoy it :) \
 Also make sure you have a good connection
