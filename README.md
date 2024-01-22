@@ -38,11 +38,13 @@ Run the command like this:
 
 
 
-## Clone this Repository
+## Start Program
 
-Always at root, after you ran the command, you will execute "main.py"
+Always at root, after you ran the command, you will execute "pip3 install requirements.txt" and "main.py"
 
 ```bash
+
+  pip3 install requirements.txt
   python3 main.py
 
 ```
