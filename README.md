@@ -34,7 +34,7 @@ Go to the root of this repository like this and run requirements.txt:
   pip3 install requirements.txt
 
 ```
-Run the command like this:
+Run the export command like this:
 ![Capture d’écran du 2024-01-22 17-17-47](https://github.com/Baguel/Python_Chatbot/assets/114688432/57775f0c-c627-47eb-ad52-91e43809eb6c)
 
 
