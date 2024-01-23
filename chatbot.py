@@ -79,5 +79,3 @@ def main_loop():
         else:
             print('bot: ' + text)
             text_to_voice(text)
-
-##main_loop()
