@@ -13,9 +13,9 @@ def translate_to_other_langage(texte):
 
 def bot():
     li = ["Dicutez avec notre Superbot alimenter avec Gemini", "Choisissez l'option 1 pour discuter avec la voix", "Choisissez l'option 2 pour discuter avec les écrits"]
-    lang = detect_default_langage()
+
     for i in range (0, len(li)): 
-        print(li[i])
+        print(translate_to_other_langage(li[i]))
 
     Choix = input(translate_to_other_langage("Fait ton choix pour continuer:") + " ")
     if Choix == '1':
