@@ -31,7 +31,7 @@ Go to the root of this repository like this and run requirements.txt:
 ```bash
 
   cd Python_Chatbot
-  pip3 install requirements.txt
+  pip3 install -r requirements.txt
 
 ```
 Run the export command like this:
