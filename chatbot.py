@@ -42,7 +42,7 @@ def response_with_gemini(prompt):
     genai.configure(
         api_key=os.environ['google'])
     model = genai.GenerativeModel(
-        model_name='gemini-pro'
+        model_name='gemini-pro-vision'
     )
     completion = model.generate_content(
     prompt,

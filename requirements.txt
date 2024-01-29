@@ -1,8 +1,5 @@
-speech_recognition
-locale
+SpeechRecognition
 googletrans
 gtts
 pygame
-io
 google.generativeai
-os
