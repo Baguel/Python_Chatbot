@@ -1,11 +1,16 @@
-import locale
+import os
 from googletrans import Translator
 from chatbot import main_loop
 from test import get_texte, recognize_speech, speech_to_text
 
 def detect_default_langage():
-    lang = locale.getdefaultlocale()[0]
-    return lang
+    lang = os.getenv('LANG')
+
+    if lang:
+        lang_code = lang.split('.')[0].split('_')[0]
+        return lang_code
+    else:
+        return None
 
 def translate_to_other_langage(texte):
     langage = detect_default_langage()

@@ -8,8 +8,13 @@ from googletrans import Translator
 
 # Détecte le langage de la machine
 def detect_default_langage():
-    lang = locale.getdefaultlocale()[0].split('_')[0]
-    return lang
+    lang = os.getenv('LANG')
+
+    if lang:
+        lang_code = lang.split('.')[0].split('_')[0]
+        return lang_code
+    else:
+        return None
 
 # Traduis dans le langage de la machine
 def translate_to_other_langage(texte):
@@ -42,7 +47,7 @@ def response_with_gemini(prompt):
     genai.configure(
         api_key=os.environ['google'])
     model = genai.GenerativeModel(
-        model_name='gemini-pro-vision'
+        model_name='gemini-pro'
     )
     completion = model.generate_content(
     prompt,
