@@ -23,8 +23,10 @@ Get Gemini API_KEY from google website: https://makersuite.google.com/app/apikey
 
 ## API_KEY
 
-To run this project, you will need to add the API KEY in your environment like this:
+To run this project, you will need to add the API KEY in your environment like this if you are on ubuntu:
 `export google='API_KEY'`
+but if you are on windows do that;
+`set google=API_KEY`
 
 Please use google for Variable's name and add your true API_KEY. \
 Go to the root of this repository like this and run requirements.txt:
