@@ -5,6 +5,8 @@ import google.generativeai as genai
 import os
 import locale
 from googletrans import Translator
+from chrome import web
+from vision import visionpicture
 
 # Détecte le langage de la machine
 def detect_default_langage():
@@ -44,11 +46,32 @@ def text_to_voice(texte):
 
 
 def response_with_gemini(prompt):
+    safety_settings = [
+        {
+            "category": "HARM_CATEGORY_HARASSMENT",
+            "threshold": "BLOCK_MEDIUM_AND_ABOVE"
+        },
+        {
+            "category": "HARM_CATEGORY_HATE_SPEECH",
+            "threshold": "BLOCK_MEDIUM_AND_ABOVE"
+        },
+        {
+            "category": "HARM_CATEGORY_SEXUALLY_EXPLICIT",
+            "threshold": "BLOCK_MEDIUM_AND_ABOVE"
+        },
+        {
+            "category": "HARM_CATEGORY_DANGEROUS_CONTENT",
+            "threshold": "BLOCK_MEDIUM_AND_ABOVE"
+        }
+    ]
+
     genai.configure(
         api_key=os.environ['google'])
     model = genai.GenerativeModel(
-        model_name='gemini-pro'
+        model_name='gemini-pro',
+        safety_settings=safety_settings
     )
+
     completion = model.generate_content(
     prompt,
     generation_config={
@@ -71,16 +94,26 @@ def dictionnary(texte):
         s = Translator().translate(texte, dest="fr").text
         if i == s.lower():
             return translate_to_other_langage(j)
-
+        elif translate_to_other_langage("chrome") in texte:
+            return texte
+        elif translate_to_other_langage("analyses") in texte:
+            return texte
+        
     return response_with_gemini(texte)
 
 def main_loop():
     while True:
         texte = input(translate_to_other_langage("Entrer votre texte:") + ' ')
         text = dictionnary(texte)
-        if text == "Au Revoir":
-            text_to_voice(text)
-            break
+        if text != " " and translate_to_other_langage("chrome") in text:
+            li = text.split()
+            web(li[1])
+        elif text != " " and translate_to_other_langage("analyses") in texte:
+            picture = input(translate_to_other_langage('entrer votre image: '))
+            prompt = input(translate_to_other_langage('entrer votre promt: '))
+            descript = visionpicture(prompt, picture)
+            print(translate_to_other_langage(descript))
+            text_to_voice(descript)
         else:
-            print('bot: ' + text)
+            print("Bot: " + text)
             text_to_voice(text)

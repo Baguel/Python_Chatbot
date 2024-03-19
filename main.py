@@ -1,7 +1,7 @@
 import os
 from googletrans import Translator
 from chatbot import main_loop
-from test import get_texte, recognize_speech, speech_to_text
+from test import speech_to_text
 
 def detect_default_langage():
     lang = os.getenv('LANG')
@@ -17,7 +17,7 @@ def translate_to_other_langage(texte):
     return Translator().translate(texte, dest=langage).text
 
 def bot():
-    li = ["Discutez avec notre Superbot alimenté par Gemini", "Choisissez l'option 1 pour discuter à voix haute", "Choisissez l'option 2 pour discuter par écrit."]
+    li = ["Discutez avec notre Superbot alimenté par Gemini", "Choisissez l'option 1 pour discuter à voix haute", "Choisissez l'option 2 pour discuter par écrit", "Appuyez Ctrl + c pour mettre fin a la session"]
 
     for i in range (0, len(li)): 
         print(translate_to_other_langage(li[i]))
