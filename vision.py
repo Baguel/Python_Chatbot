@@ -2,7 +2,7 @@ from pathlib import Path
 import google.generativeai as genai
 
 def visionpicture(prompt, picture):
-  genai.configure(api_key="AIzaSyAgGAqODE6Jijm3SYGTPiGBj8nr76X6wrU")
+  genai.configure(api_key=os.environ['google'])
 
   # Set up the model
   generation_config = {
